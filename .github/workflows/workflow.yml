@@ -2,17 +2,17 @@ name: Windows EXE Olusturucu
 
 on:
   push:
-    branches: [ "main" ] # Kodu her güncellediğinde çalışır
+    branches: [ "main" ]
 
 jobs:
   build:
-    runs-on: windows-latest # Kritik nokta: GitHub senin için Windows açıyor!
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4 # v3 -> v4 yapıldı
 
     - name: Python Kur
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5 # v4 -> v5 yapıldı
       with:
         python-version: '3.11'
 
@@ -26,7 +26,7 @@ jobs:
         pyinstaller --onefile --windowed --name "WhatsApp_Gonderici" wa2.py
 
     - name: Dosyayi Yukle (Artifact)
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4 # KRİTİK GÜNCELLEME: v3 -> v4
       with:
         name: WhatsApp_Windows_EXE
         path: dist/WhatsApp_Gonderici.exe
